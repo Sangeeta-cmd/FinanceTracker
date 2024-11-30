@@ -11,3 +11,5 @@
 --- To run,
  1. Execute 'index.html' file to start with the application
     
+## Preview
+https://github.com/user-attachments/assets/fcf64a8d-bcf8-494d-bfca-a7095f7fa9c9
