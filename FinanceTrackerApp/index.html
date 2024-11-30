@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loginAccessRegister">
+        <div class="login_access">
+            <h2>Login to Your Account</h2>
+            <form class="login-form">
+                <input type="email" id="loginEmail" placeholder="working emial" required>
+                <input type="password" id="loginPwd" placeholder="Password" required>
+                <button type="submit" id="loginButton">Login</button>
+            </form>
+            <p class="login_switch">
+                Don't have an account? 
+                <button id="loginButtonRegister">Create Account</button>
+            </p>
+        </div>
+        <div class="login_register">
+            <h1>Create your account</h1>
+            <form class="login-form">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="email" id="email" placeholder="working emial" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit" id="registerButton">Sign Up</button>
+            </form>
+            <p class="login_switch">
+                Already have an account? 
+                <button id="loginButtonAccess">Log In</button>
+            </p>
+        </div>
+    </div>
+    
+    
+    <script src="script.js"></script>
+</body>
+</html>

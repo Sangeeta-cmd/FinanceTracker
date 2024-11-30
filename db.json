@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": "9b08",
+      "username": "SangeetaPujari",
+      "emailId": "sangeetaneelsnk@gmail.com",
+      "password": "123"
+    },
+    {
+      "id": "fcc8",
+      "username": "sam",
+      "emailId": "sam@test.com",
+      "password": "321"
+    },
+    {
+      "id": "9963",
+      "username": "ram",
+      "emailId": "ram@test.com",
+      "password": "123"
+    }
+  ]
+}

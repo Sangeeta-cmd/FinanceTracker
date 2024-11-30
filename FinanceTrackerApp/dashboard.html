@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" 
+    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="dashboardstyle.css">
+
+</head>
+<body>
+    <nav>
+        <p>Personal Finance Tracker</p>
+        <div class="user-profile">
+            <i class="fa-solid fa-user"></i>
+        </div>
+    </nav>
+    
+    <div class="amt-details">
+        <div id="balanceSheet">
+            <i class="fa-solid fa-hand-holding-dollar"></i>
+            <p>Current Balance</p>
+            <h2>₹<span>0</span></h2>
+        </div>
+        <div id="incomeSheet">
+            <i class="fa-solid fa-sack-dollar"></i>
+            <p>Total Income</p>
+            <h2>₹<span>0</span></h2> 
+        </div>
+        <div id="expenseSheet">
+            <i class="fa-solid fa-chart-pie"></i>
+            <p>Total Expences</p>
+            <h2>₹<span>0</span></h2> 
+        </div>
+    </div>
+
+    <div class="transaction-form-details">
+        <h2>Transaction-form</h2>
+        <div class="transaction-forms">
+            <div class="add-income">
+                <form>
+                    <label>Enter Name</label>
+                    <input type="text" placeholder="User Name" id="username" required>
+                    <label>Enter Amount</label>
+                    <input type="text" placeholder="Enter amount to be added" id="incomeAmt" required>
+                    <label>Enter Date</label>
+                    <input type="date" placeholder="Today's date" id="date" required>
+                    <label>Enter TagName</label>
+                    <select name="dropdown" id="dropdown-list" required>
+                        <option value="Salary">Salary</option>
+                        <option value="Investment">Investment</option>
+                        <option value="Freelance">Freelance</option>
+                    </select>
+                    <button>Add Amount</button>
+                </form>
+            </div>
+            <div class="add-expense">
+                <form>
+                    <label>Enter Name</label>
+                    <input type="text" placeholder="User Name" id="name" required>
+                    <label>Enter Expense Amount</label>
+                    <input type="text" placeholder="Enter amount to be spent" id="expenseAmt" required>
+                    <label>Enter Date</label>
+                    <input type="date" placeholder="Today's date" id="expenseAmtDate" required>
+                    <label>Enter TagName</label>
+                    <select name="dropdown" id="expense-dropdown-list" required>
+                        <option value="Food">Food</option>
+                        <option value="Education">Education</option>
+                        <option value="Rent">Rent</option>
+                    </select>
+                    <button>Add Expenses</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="transaction-list">
+        <h2>Transaction-List</h2>
+        <div class="list">
+            <table>   
+                <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <th>Category</th>
+                        <th>Amount(Rs)</th>
+                        <th>Tag</th>
+                        <th>Transaction date</th>
+                        <th>delete</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <!-- table of rows go here -->
+                </tbody>    
+            </table>
+        </div>
+    </div>
+
+    <script src="dashboardscript.js"></script>
+</body>
+</html>
