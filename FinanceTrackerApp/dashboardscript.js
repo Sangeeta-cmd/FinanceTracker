@@ -1,77 +1,64 @@
-document.addEventListener('DOMContentLoaded', () => {
-    loadTransactionsFromLocalStorage();
 
-    let incomeForm = document.querySelector('.transaction-forms .add-income form')
-    let expenseForm = document.querySelector('.transaction-forms .add-expense form')
 
-    incomeForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const name = document.getElementById('username').value;
-        const incomeAmt = document.getElementById('incomeAmt').value;
-        const date = document.getElementById('date').value;
-        const tagName = document.getElementById('dropdown-list').value;
-        const category = 'income';
+let incomeForm = document.querySelector('.transaction-forms .add-income form')
+let expenseForm = document.querySelector('.transaction-forms .add-expense form')
 
-        updateAmounts(incomeAmt, category)
-        updateTransitionList(name, category, incomeAmt, date, tagName)
-        incomeForm.reset()
-    })
+incomeForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const name = document.getElementById('username').value;
+    const incomeAmt = document.getElementById('incomeAmt').value;
+    const date = document.getElementById('date').value;
+    const tagName = document.getElementById('dropdown-list').value;
+    const category = 'income';
 
-    expenseForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const name = document.getElementById('name').value;
-        const expenseAmt = document.getElementById('expenseAmt').value;
-        const date = document.getElementById('expenseAmtDate').value;
-        const tagName = document.getElementById('expense-dropdown-list').value;
-        const category = 'expense';
+    updateAmounts(incomeAmt, category)
+    updateTransitionList(name, category, incomeAmt, date, tagName)
+    incomeForm.reset()
+})
 
-        updateAmounts(expenseAmt, category)
-        updateTransitionList(name, category, expenseAmt, date, tagName)
-        expenseForm.reset()
-    })
+expenseForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const name = document.getElementById('name').value;
+    const expenseAmt = document.getElementById('expenseAmt').value;
+    const date = document.getElementById('expenseAmtDate').value;
+    const tagName = document.getElementById('expense-dropdown-list').value;
+    const category = 'expense';
 
-});
+    updateAmounts(expenseAmt, category)
+    updateTransitionList(name, category, expenseAmt, date, tagName)
+    expenseForm.reset()
+})
+
+const table = document.querySelector('.transaction-list table')
+const tbody = document.getElementById('table-body')
 
 function updateTransitionList(name, category, Amt, date, tagName) {
-    const table = document.querySelector('.transaction-list table')
-    let row = document.createElement('tr')
+    let row = tbody.insertRow();
 
-    let nameCell = document.createElement('td')
-    nameCell.textContent = name;
-    row.appendChild(nameCell)
-
-    let categoryCell = document.createElement('td')
+    let nameCell = row.insertCell();
+    nameCell.textContent = name
+    let categoryCell = row.insertCell();
     categoryCell.innerText = category;
-    row.appendChild(categoryCell)
-
-    let amtCell = document.createElement('td')
+    let amtCell = row.insertCell();
     amtCell.textContent = Amt;
-    row.appendChild(amtCell)
-
-    let tagCell = document.createElement('td')
+    let tagCell = row.insertCell();
     tagCell.innerText = tagName;
-    row.appendChild(tagCell)
-
-    let dateCell = document.createElement('td')
-    dateCell.innerHTML = date;
-    row.appendChild(dateCell)
-
-    let cancelBtn = document.createElement('button')
-    cancelBtn.innerText = 'Delete'
-    let buttonCell = document.createElement('td')
-    buttonCell.appendChild(cancelBtn)
-    row.appendChild(buttonCell)
+    let dateCell = row.insertCell()
+    dateCell.innerText = date;
+    let cancelCell = row.insertCell()
+    cancelCell.innerText = 'Delete'
+    cancelCell.classList.add("cancelBtn-style")
 
     table.appendChild(row)
 
-    saveTransactionToLocalStorage({ name, category, Amt, date, tagName })
+    saveTransactionToLocalStorage();
 
-    cancelBtn.addEventListener('click', () => {
-        console.log('click')
-        table.removeChild(row)
-        deleteTransactionAmt(Amt, category)
-        removeTransactionFromLocalStorage(Amt, category)
-    })
+    // cancelBtn.addEventListener('click', () => {
+    //     console.log('click')
+    //     table.removeChild(row)
+    //     deleteTransactionAmt(Amt, category)
+    //     // removeTransactionFromLocalStorage(Amt, category)
+    // })
 }
 
 
@@ -121,33 +108,34 @@ function deleteTransactionAmt(amt, category) {
 }
 
 
-function saveTransactionToLocalStorage(transaction) {
-    let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-    transactions.push(transaction);
-    localStorage.setItem('transactions', JSON.stringify(transactions));
+function saveTransactionToLocalStorage() {
+    let tableData = [];
+    let rows = table.rows;
+
+    for (let i = 1; i < rows.length; i++) {
+        let rowData = [];
+        let cells = rows[i].cells;
+        for (let j = 0; j < cells.length; j++) {
+            rowData.push(cells[j].innerText)
+        }
+        tableData.push(rowData)
+    }
+    
+    localStorage.setItem('transactions', JSON.stringify(tableData));
 }
 
 function loadTransactionsFromLocalStorage() {
-    let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-    transactions.forEach(transaction => {
-        // Check if the transaction is already in the table
-        const existingRows = document.querySelectorAll('.transaction-list .list table tbody tr');
-        let exists = false;
-
-        existingRows.forEach(row => {
-            const amtCell = row.cells[2].textContent;
-            const categoryCell = row.cells[1].textContent;
-            if (amtCell === transaction.Amt && categoryCell === transaction.category) {
-                exists = true;
-            }
+    let tableData = JSON.parse(localStorage.getItem("transactions"))
+    if (tableData) {
+        console.log("clicked ", tableData)
+        tableData.forEach(rowData => {
+            let newRow = tbody.insertRow();
+            rowData.forEach(cell => {
+                let newCell = newRow.insertCell();
+                newCell.innerText = cell
+            })
         });
-
-        if (!exists) {
-            updateTransitionList(transaction.name, transaction.category, transaction.Amt, transaction.date, transaction.tagName);
-        }
-
-    });
-
+    }
 }
 
 function removeTransactionFromLocalStorage(Amt, category) {
@@ -157,3 +145,4 @@ function removeTransactionFromLocalStorage(Amt, category) {
 }
 
 
+loadTransactionsFromLocalStorage();

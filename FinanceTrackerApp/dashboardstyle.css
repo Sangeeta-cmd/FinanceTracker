@@ -151,6 +151,9 @@ td,th{
     text-align: left;
     color: #292727;
 }
+.cancelBtn-style{
+    border: 1px solid red;
+}
 
 @media ((max-width : 500px) and (min-width:300px)){
     nav{
