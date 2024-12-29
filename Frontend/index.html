@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="loginAccessRegister">
+    <div id="main-container">
         <div class="login_access">
             <h2>Login to Your Account</h2>
-            <form class="login-form">
-                <input type="email" id="loginEmail" placeholder="working emial" required>
-                <input type="password" id="loginPwd" placeholder="Password" required>
-                <button type="submit" id="loginButton">Login</button>
+            <form>
+                <input type="email" id="email" name="email" placeholder="working emial" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <button type="submit" class="action-btn">Login</button>
             </form>
             <p class="login_switch">
                 Don't have an account? 
@@ -22,11 +22,11 @@
         </div>
         <div class="login_register">
             <h1>Create your account</h1>
-            <form class="login-form">
-                <input type="text" id="username" placeholder="Username" required>
-                <input type="email" id="email" placeholder="working emial" required>
-                <input type="password" id="password" placeholder="Password" required>
-                <button type="submit" id="registerButton">Sign Up</button>
+            <form>
+                <input type="text" name="username" id="username" placeholder="Username" required>
+                <input type="email" name="email" id="email" placeholder="working emial" required>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <button type="submit" class="action-btn">Sign Up</button>
             </form>
             <p class="login_switch">
                 Already have an account? 

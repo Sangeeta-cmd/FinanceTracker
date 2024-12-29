@@ -1,83 +1,79 @@
-let loginForm = document.querySelector(".login_access .login-form")
-let signupForm = document.querySelector(".login_register .login-form")
-const loginAccessRegister = document.getElementById("loginAccessRegister")
-const signUpBtn = document.getElementById("loginButtonRegister")
-const logInbtn  = document.getElementById("loginButtonAccess")
-let loginEmailIp = document.querySelector('#loginEmail');
-let loginPwdIp = document.querySelector('#loginPwd');
-let emailInput = document.getElementById('email');
-let passwordInput = document.getElementById('password');
-let usernameInput = document.getElementById('username');
+let loginForm = document.querySelector(".login_access form")
+let signupForm = document.querySelector(".login_register form")
+let mainContainer = document.getElementById("main-container")
+let signUpBtn = document.getElementById("loginButtonRegister")
+let logInbtn  = document.getElementById("loginButtonAccess")
+let login_email = document.querySelector('.login_access #email');
+let login_password = document.querySelector('.login_access #password');
+let user_email = document.querySelector('.login_register #email');
+let user_password = document.querySelector('.login_register #password');
+let user_name = document.querySelector('.login_register #username');
 
 
 signUpBtn.addEventListener("click", ()=>{
-    loginAccessRegister.classList.add('active')
+    mainContainer.classList.add('active')
 })
 
 logInbtn.addEventListener("click", ()=>{
-    loginAccessRegister.classList.remove('active')
+    mainContainer.classList.remove('active')
 })
  
  
 loginForm.addEventListener('submit', (event)=>{
     event.preventDefault();
 
-    const emailId = loginEmailIp.value; 
-    const password = loginPwdIp.value;
+    const email = login_email.value; 
+    const password = login_password.value;
  
-    fetch('http://localhost:3000/users')
+    fetch('http://localhost:8080/')
     .then(response => response.json())
     .then(users => {
-        let user = users.find(u => u.emailId === emailId && u.password === password)
+        let user = users.find(u => u.email === email && u.password === password)
         if(user){
             alert("login successful!")
-            window.open('dashboard.html', '_blank')
+            window.open('dashboard.html', '_blank');
         }else{
-            alert("Invalid email id or password")
+            alert("Invalid email id or password");
         }
     })
     .catch(error =>
         console.log(error)
     )
 
-    loginForm.reset()
+    loginForm.reset();
 })
 
 signupForm.addEventListener('submit', (event)=>{
     event.preventDefault();
-    
-    const emailId = emailInput.value; 
-    const username = usernameInput.value;
-    const password = passwordInput.value; 
 
-    fetch('http://localhost:3000/users')
+    const email = user_email.value; 
+    const username = user_name.value;
+    const password = user_password.value; 
+
+    fetch('http://localhost:8080/')
     .then(response => response.json())
     .then(users => {
-        let user = users.find(u => u.emailId === emailId && u.username === username)
+        let user = users.find(u => u.email === email && u.username === username)
         if(!user){ 
-            saveLoginCredentials(username, emailId, password);
+            saveLoginCredentials(username, email, password);
         }else{
-            alert("emailId is already in use | Please login")
+            alert("emailId is already in use | Please login");
         }
     })
     .catch(error =>
         console.log(error)
     )
 
-    signupForm.reset()
+    signupForm.reset();
 })
 
-function saveLoginCredentials(username, emailId, password){
-    console.log(username)
-    console.log(emailId)
-    console.log(password)
-
-    fetch('http://localhost:3000/users', {
+function saveLoginCredentials(username, email, password){
+    fetch('http://localhost:8080/', {
         method: "POST",
         headers: {
             "Content-type": "application/json"
         },
-        body: JSON.stringify({username, emailId, password})
+        body: JSON.stringify({username, email, password})
     })
     .then(response =>{ 
         if(response.ok){
@@ -90,5 +86,5 @@ function saveLoginCredentials(username, emailId, password){
         console.log(error)
     )
 
-    loginAccessRegister.classList.remove('active')   
+    mainContainer.classList.remove('active');
 }
