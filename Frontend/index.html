@@ -1,41 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finance Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div id="main-container">
-        <div class="login_access">
-            <h2>Login to Your Account</h2>
-            <form>
-                <input type="email" id="email" name="email" placeholder="working emial" required>
-                <input type="password" id="password" name="password" placeholder="Password" required>
-                <button type="submit" class="action-btn">Login</button>
-            </form>
-            <p class="login_switch">
-                Don't have an account? 
-                <button id="loginButtonRegister">Create Account</button>
-            </p>
+        <div class="sub-containers">
+            <h1>Your Financial Wellness Starts Here</h1>
+            <p id="init-para">"Monitor your spending, track savings, and achieve your financial goals effortlessly"</p>
+
+            <div class="login_access">
+                <h2>Login to Your Account</h2>
+                <form>
+                    <input type="email" id="email" name="email" placeholder="working emial" required>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <button type="submit" class="action-btn">Login</button>
+                </form>
+                <p class="login_switch">
+                    Don't have an account?
+                    <button id="loginButtonRegister">Create Account</button>
+                </p>
+            </div>
+            <div class="login_register">
+                <h2>Create your account</h2>
+                <form>
+                    <input type="text" name="username" id="username" placeholder="Username" required>
+                    <input type="email" name="email" id="email" placeholder="working emial" required>
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                    <button type="submit" class="action-btn">Sign Up</button>
+                </form>
+                <p class="login_switch">
+                    Already have an account?
+                    <button id="loginButtonAccess">Log In</button>
+                </p>
+            </div>
         </div>
-        <div class="login_register">
-            <h1>Create your account</h1>
-            <form>
-                <input type="text" name="username" id="username" placeholder="Username" required>
-                <input type="email" name="email" id="email" placeholder="working emial" required>
-                <input type="password" name="password" id="password" placeholder="Password" required>
-                <button type="submit" class="action-btn">Sign Up</button>
-            </form>
-            <p class="login_switch">
-                Already have an account? 
-                <button id="loginButtonAccess">Log In</button>
-            </p>
+        <div class="sub-containers">
+            <img src="https://img.freepik.com/free-vector/credit-score-flat-background-with-male-character-holding-coin-surrounded-by-round-compositions-financial-icons-vector-illustration_1284-83829.jpg?t=st=1735630471~exp=1735634071~hmac=83fbcebc2097c1bd77d7a21a83dcd2836486eafa3ccc2ef5c3cffd7753671e38&w=740"
+                alt="image" id="img">
         </div>
+
     </div>
-    
-    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

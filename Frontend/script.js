@@ -1,8 +1,33 @@
-let loginForm = document.querySelector(".login_access form")
-let signupForm = document.querySelector(".login_register form")
-let mainContainer = document.getElementById("main-container")
-let signUpBtn = document.getElementById("loginButtonRegister")
-let logInbtn  = document.getElementById("loginButtonAccess")
+t1 = gsap.timeline();
+t1.from("h1",{
+    y: 60,
+    duration: 1.5,
+    opacity: 0,
+})
+
+t1.from("#init-para",{
+    y: 60,
+    duration: 1.5,
+    opacity:0,
+})
+
+t1.from("#img",{
+    y: 60,
+    opacity: 0,
+    duration:1.5
+})
+
+t1.from(".login_access",{
+    duration: 2,
+    scale: 0
+})
+
+
+let loginForm = document.querySelector(".login_access form");
+let signupForm = document.querySelector(".login_register form");
+let mainContainer = document.getElementById("main-container");
+let signUpBtn = document.getElementById("loginButtonRegister");
+let logInbtn  = document.getElementById("loginButtonAccess");
 let login_email = document.querySelector('.login_access #email');
 let login_password = document.querySelector('.login_access #password');
 let user_email = document.querySelector('.login_register #email');
@@ -11,11 +36,12 @@ let user_name = document.querySelector('.login_register #username');
 
 
 signUpBtn.addEventListener("click", ()=>{
-    mainContainer.classList.add('active')
+    console.log("click")
+    mainContainer.classList.add('active');
 })
 
 logInbtn.addEventListener("click", ()=>{
-    mainContainer.classList.remove('active')
+    mainContainer.classList.remove('active');
 })
  
  
